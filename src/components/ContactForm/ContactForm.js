@@ -1,4 +1,5 @@
 import { Component } from "react";
+import propTypes from "prop-types";
 import { Formik, Field, Form } from "formik";
 import { nanoid } from "nanoid";
 
@@ -9,6 +10,15 @@ const initialState = {
 
 export default class ContactForm extends Component {
   handleSubmit = ({ name, number }, { resetForm }) => {
+    const isNameInContacts = this.props.contacts.find(
+      (contact) => contact.name.toLowerCase() === name.toLowerCase()
+    );
+
+    if (isNameInContacts) {
+      alert(`${name} is already in contacts`);
+      return;
+    }
+
     const contactObj = { id: nanoid(6), name, number };
     this.props.onSubmit(contactObj);
     resetForm();
@@ -36,9 +46,14 @@ export default class ContactForm extends Component {
             required
           />
 
-          <button type="submit">Submit</button>
+          <button type="submit">Add contact</button>
         </Form>
       </Formik>
     );
   }
 }
+
+ContactForm.propTypes = {
+  onSubmit: propTypes.func.isRequired,
+  contacts: propTypes.arrayOf(propTypes.object).isRequired,
+};

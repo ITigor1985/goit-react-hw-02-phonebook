@@ -4,6 +4,7 @@ import { Component } from "react";
 import Section from "../Section";
 import ContactForm from "../ContactForm";
 import ContactList from "../ContactList";
+import Filter from "../Filter";
 
 class App extends Component {
   state = {
@@ -37,10 +38,11 @@ class App extends Component {
     });
   };
 
-  // handleChange = (evt) => {
-  //   const { name, value } = evt.target;
-  //   this.setState({ [name]: value });
-  // };
+  onChangeHandler = (filter) => {
+    this.setState((prevState) => {
+      return { ...prevState, filter: filter };
+    });
+  };
 
   render() {
     const { contacts, filter } = this.state;
@@ -48,9 +50,10 @@ class App extends Component {
       <>
         <Container>
           <Section title="Phonebook">
-            <ContactForm onSubmit={this.addContact} />
+            <ContactForm onSubmit={this.addContact} contacts={contacts} />
           </Section>
           <Section title="Contacts">
+            <Filter onChange={this.onChangeHandler} />
             <ContactList
               contacts={contacts}
               filter={filter}
