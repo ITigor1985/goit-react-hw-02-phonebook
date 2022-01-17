@@ -1,4 +1,5 @@
 import { Component } from "react";
+import { FormInput } from "./ContactForm.styled";
 import propTypes from "prop-types";
 import { Formik, Field, Form } from "formik";
 import { nanoid } from "nanoid";
@@ -30,6 +31,7 @@ export default class ContactForm extends Component {
         <Form autoComplete="off">
           <label htmlFor="name">Name</label>
           <Field
+            as={FormInput}
             type="text"
             name="name"
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -39,6 +41,7 @@ export default class ContactForm extends Component {
 
           <label htmlFor="number">Phone number</label>
           <Field
+            as={FormInput}
             type="tel"
             name="number"
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"

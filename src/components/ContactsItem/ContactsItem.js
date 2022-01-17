@@ -1,13 +1,16 @@
 import propTypes from "prop-types";
+import { Contact, ContactWrapper } from "./ContactsItem.styled";
 const ContactsItem = ({ id, name, number, onDelete }) => {
   return (
-    <li>
-      <span>{name}:</span>
-      <span>{number} </span>
+    <Contact>
+      <ContactWrapper>
+        <span>{name}:</span>
+        <span>{number} </span>
+      </ContactWrapper>
       <button type="button" onClick={() => onDelete(id)}>
         Delete
       </button>
-    </li>
+    </Contact>
   );
 };
 
