@@ -50,7 +50,7 @@ class App extends Component {
       filterContact = this.state.contacts.filter(
         (contact) =>
           contact.name.includes(this.state.filter) ||
-          contact.name.toLocaleLowerCase().includes(this.state.filter)
+          contact.name.toLowerCase().includes(this.state.filter)
       );
     } else {
       return this.state.contacts;
