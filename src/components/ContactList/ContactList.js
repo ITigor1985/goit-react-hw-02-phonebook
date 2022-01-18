@@ -1,9 +1,9 @@
 import ContactsItem from "../ContactsItem";
 import propTypes from "prop-types";
-const ContactList = ({ filterContacts, filter, onDelete }) => {
+const ContactList = ({ filterContacts, onDelete }) => {
   return (
     <ul>
-      {filterContacts(filter).map(({ name, number, id }) => (
+      {filterContacts().map(({ name, number, id }) => (
         <ContactsItem
           key={id}
           name={name}
@@ -20,6 +20,5 @@ export default ContactList;
 
 ContactList.propTypes = {
   filterContacts: propTypes.func.isRequired,
-  filter: propTypes.string.isRequired,
   onDelete: propTypes.func.isRequired,
 };

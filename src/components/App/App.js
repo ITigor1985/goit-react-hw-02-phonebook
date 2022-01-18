@@ -44,13 +44,13 @@ class App extends Component {
     });
   };
 
-  filterContacts = (filter) => {
+  onFilterContacts = () => {
     let filterContact = [];
-    if (filter) {
+    if (this.state.filter) {
       filterContact = this.state.contacts.filter(
         (contact) =>
-          contact.name.includes(filter) ||
-          contact.name.toLocaleLowerCase().includes(filter)
+          contact.name.includes(this.state.filter) ||
+          contact.name.toLocaleLowerCase().includes(this.state.filter)
       );
     } else {
       return this.state.contacts;
@@ -59,7 +59,7 @@ class App extends Component {
   };
 
   render() {
-    const { contacts, filter } = this.state;
+    const { contacts } = this.state;
     return (
       <>
         <Container>
@@ -69,8 +69,7 @@ class App extends Component {
           <Section title="Contacts">
             <Filter onChange={this.onChangeHandler} />
             <ContactList
-              filterContacts={this.filterContacts}
-              filter={filter}
+              filterContacts={this.onFilterContacts}
               onDelete={this.onDeleteHandler}
             />
           </Section>
